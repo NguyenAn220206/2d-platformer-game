@@ -1,0 +1,173 @@
+1. Bản chất của cách xây map hiện tại
+
+Bạn đang dùng tile-based map (map theo ô) với ASCII layout.
+
+Hiểu ngắn gọn:
+
+Map = danh sách các chuỗi
+
+Mỗi ký tự = 1 ô (tile)
+
+Mỗi ô có kích thước cố định (TILE_SIZE)
+
+Game đọc từng ký tự → sinh ra đối tượng trong thế giới
+
+Đây là cách xây map giống Mario, Celeste, Hollow Knight (ở mức prototype).
+
+2. Cách game “đọc” map
+
+Giả sử:
+
+TILE_SIZE = 50
+
+
+Và có dòng:
+
+'   P   X   G'
+
+
+Game sẽ làm như sau:
+
+Ký tự	Cột	Hàng	Tọa độ (x, y)
+P	3	0	(3×50, 0×50)
+X	7	0	(7×50, 0×50)
+G	11	0	(11×50, 0×50)
+
+👉 Không cần nhập tọa độ tay
+👉 Vị trí sinh ra tự động
+
+3. Quy ước ký hiệu (luật xây map)
+
+Đây là “luật chơi” của bạn khi vẽ map:
+
+Ký hiệu	Ý nghĩa
+' '	Ô trống
+X	Nền / platform
+P	Điểm spawn player
+G	Đích
+
+Bạn có thể mở rộng sau:
+
+E → Enemy
+
+T → Trap
+
+C → Coin
+
+K → Key
+
+4. Cách tự xây map đúng cách (rất quan trọng)
+Bước 1: Xác định chiều ngang
+
+Ví dụ:
+
+20 ký tự = 1000px nếu TILE_SIZE = 50
+
+
+👉 Muốn map dài → thêm ký tự ngang
+👉 Muốn map cao → thêm dòng
+
+Bước 2: Luôn có nền đáy
+
+Ví dụ:
+
+XXXXXXXXXXXXXXXXXXXX
+
+
+Không có dòng này → player rơi vô hạn
+
+Bước 3: Player spawn phải đứng trên đất
+
+❌ Sai:
+
+   P
+XXXXXXXXXXXXXXXX
+
+
+✔️ Đúng:
+
+   P
+   X
+XXXXXXXXXXXXXXXX
+
+
+Hoặc:
+
+   P
+XXXXXXXXXXXXXXXX
+
+
+(nếu P đứng đúng vị trí va chạm)
+
+Bước 4: Đặt goal ở vị trí hợp lý
+
+❌ Không nên:
+
+G
+XXXXXXXXXXXXXXXX
+
+
+✔️ Nên:
+
+      G
+   XXXXXX
+XXXXXXXXXXXXXXXX
+
+5. Tư duy xây map đúng chuẩn game dev
+
+Khi build map, bạn nên tự hỏi:
+
+Người chơi nhảy được bao xa?
+
+Có chỗ nghỉ không?
+
+Camera có đủ không gian chạy không?
+
+Map này đang dạy kỹ năng gì?
+
+Ví dụ:
+
+Map 1 → học nhảy
+
+Map 2 → nhảy ngang
+
+Map 3 → nhảy cao
+
+Map 4 → chuỗi nhảy
+
+Map 5 → tổng hợp
+
+6. Ưu điểm so với JSON cũ (vì sao cách này đúng)
+JSON cũ	ASCII map
+Phải nhập tọa độ	Nhìn là hiểu
+Dễ sai số	Không sai
+Khó sáng tạo	Vẽ như vẽ tranh
+Không scale	Scale tốt
+
+👉 Với trình độ hiện tại của bạn, đổi cách này là quyết định đúng.
+
+7. Kết luận thẳng thắn
+
+Hiện tại:
+
+Bạn đã lên map system cấp độ game thật
+
+Không còn là demo code nữa
+
+Bước này đánh dấu: project bước sang giai đoạn content
+
+Bước tiếp theo hợp lý nhất
+
+Số 2: Chuẩn hóa MapLoader:
+
+Đọc MAP_ID
+
+Trả về:
+
+terrain list
+
+player pos
+
+goal pos
+
+Nếu bạn muốn, tôi sẽ viết sơ đồ + code khung, không phá kiến trúc hiện tại.

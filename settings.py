@@ -1,0 +1,11 @@
+# settings.py
+
+WIDTH = 1000
+HEIGHT = 600
+FPS = 60
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (120, 120, 120)
+DARK_GRAY = (70, 70, 70)
+GREEN = (0, 200, 0)
