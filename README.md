@@ -4,7 +4,7 @@
 
 ## Gioi thieu
 
-Day la mot game platformer 2D viet bang **Python + Pygame**. Game ho tro nhieu man choi (map), co menu chon man, gameplay co ke dich (enemy), vat can, va man hinh thong bao **thang / thua**. Du lieu map duoc luu rieng bang file JSON de de mo rong va chinh sua.
+Day la mot game platformer 2D viet bang **Python + Pygame**. Game ho tro nhieu man choi (map), co menu chon man, gameplay co ke dich (enemy), vat can, va man hinh thong bao **thang / thua**. Du lieu map duoc luu rieng bang file .PY de de mo rong va chinh sua.
 
 Du an phu hop cho muc dich hoc tap: to chuc code game, xu ly map, va quan ly asset trong Pygame.
 
